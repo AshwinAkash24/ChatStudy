@@ -1,5 +1,6 @@
 # Ex. No:1b 			Study of Client Server Chat Applications
-
+## Name: Ashwin Akash M
+## Reference Number: 212223230024
 ## Aim: 
 To perform a study on Client Server Chat Applications
 ## Introduction:
@@ -72,7 +73,48 @@ User authentication mechanisms are essential to ensure secure and authorized acc
 Client-server chat applications are versatile tools that facilitate real-time communication between users over a network. They incorporate various components, including server-side and client-side elements, and must consider factors such as security, scalability, and concurrency. As technology continues to advance, client-server chat applications remain integral for collaborative communication in various domains.
 
 Client-server chat applications are foundational to real-time communication over networks. They incorporate principles of socket programming, communication protocols, and security mechanisms to provide a seamless user experience. Understanding the basics of client-server chat applications is essential for developers involved in networked application development, as they form the backbone of various collaborative communication systems. As technology evolves, chat applications continue to adapt, incorporating new features and technologies to enhance user interaction and connectivity.
+## Program
+## client.py
+```python
+import socket
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client.connect(("localhost", 8000))
+done=False
+while not done:
+    client.send(input("Message ").encode('utf-8'))
+    msg = client.recv(1024).decode('utf-8')
 
+    if msg == 'quit':
+        done=True
+    else:
+        print(msg)
+
+client.close()
+```
+## server.py
+```python
+import socket
+from base64 import decode
+from operator import truediv
+server =socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.bind(('localhost', 8000))
+server.listen()
+client,addr=server.accept()
+done = False
+while not done:
+    msg = client.recv(1024).decode('utf-8')
+    if msg == 'quit':
+        done = True
+    else:
+        print(msg)
+    client.send(input("Message ").encode('utf-8'))
+
+client.close()
+server.close()
+```
+## OUTPUT:
+<img width="1020" height="253" alt="image" src="https://github.com/user-attachments/assets/a9a99c41-5e7e-4c8e-a23a-63d0400673d5" />
+<img width="1017" height="222" alt="image" src="https://github.com/user-attachments/assets/78c6976a-abd5-43ad-be73-81a65adb5fe1" />
 
 ## Result:
 
